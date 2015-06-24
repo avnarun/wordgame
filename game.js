@@ -1,14 +1,21 @@
 // ls | perl -pi -e 's/^(.*)\.jpg/"$1",/g'
 
+function getURLParameter(name) {
+  return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null
+}
+
+wordlist = getURLParameter('wordlist');
+
 $.ajax({
      async: false,
      type: 'GET',
-     url: 'wordlist/original.txt',
+     url: 'wordlist/' + wordlist + '.txt',
      success: function(data) {
        words = data.split('\n');
-       console.log(words);
+       //console.log(words);
      }
 });
+
 
 function speak(str) {
 
@@ -41,6 +48,23 @@ function GameCntl($scope, $timeout) {
 
         // Pick a random word
         $scope.word = words[Math.floor(Math.random()*words.length)];
+
+        // find if image exists for this word
+        $.ajax({
+            async: false,
+            url:'img/' + $scope.word + '.jpg',
+            type:'HEAD',
+            error: function()
+            {
+              $scope.wordfile='notfound';
+            },
+            success: function()
+            {
+              $scope.wordfile=$scope.word;
+              //alert($scope.wordfile);
+            }
+        });
+
 
         // Select a letter
         if($scope.mode == "any") {
