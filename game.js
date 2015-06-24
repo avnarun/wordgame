@@ -52,6 +52,10 @@ function GameCntl($scope, $timeout) {
         // Pick a random word
         $scope.word = words[Math.floor(Math.random()*words.length)];
 
+
+        //alert(data[1].url);
+        //alert($scope.wordimageurl);
+
         // find if image exists for this word
         $.ajax({
             async: false,
@@ -90,6 +94,15 @@ function GameCntl($scope, $timeout) {
         + $scope.word.substr($scope.index + 1);
 
         $scope.firstletter = $scope.word.substring(0,1).toUpperCase() + ' / ' + $scope.word.substring(0,1);
+
+        //update - google search for images
+        $scope.wordimageurl ="nothing";
+        new GoogleImageSearch($scope.word).done(function (data) {
+          console.log(data);
+          $scope.wordimageurl = data[0].url;
+          //console();
+          $("#googleimage").attr("src", $scope.wordimageurl);
+        })
 
         speak($scope.word);
     };
