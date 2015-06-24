@@ -5,6 +5,9 @@ function getURLParameter(name) {
 }
 
 wordlist = getURLParameter('wordlist');
+if (! wordlist) {
+    wordlist='original';
+}
 
 $.ajax({
      async: false,
