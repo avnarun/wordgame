@@ -62,6 +62,8 @@ function GameCntl($scope, $timeout) {
         $scope.clue = $scope.word.substr(0, $scope.index) + '_'
         + $scope.word.substr($scope.index + 1);
 
+        $scope.firstletter = $scope.word.substring(0,1).toUpperCase() + ' / ' + $scope.word.substring(0,1);
+
         speak($scope.word);
     };
 
