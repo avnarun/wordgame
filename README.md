@@ -1,6 +1,6 @@
-wordgame
+wordgame  
 ========
-
+<div align="right"><a href="https://codeclimate.com/github/avnarun/wordgame"><img src="https://codeclimate.com/github/avnarun/wordgame/badges/gpa.svg" /></a></div>
 I am teaching spelling to my 4 year old and looking for a very simple spelling tool for long time.
 Whatever I found so far are either bad quality, lots of distracting ads, or paid but unuseful apps.
 
